@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pein.repository.persistence.TraderFlowMapper">
+
+    <resultMap id="BaseResultMap" type="com.pein.repository.entity.TraderFlow">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="PRO_SUBJECT" property="proSubject" jdbcType="VARCHAR"/>
+        <result column="PRO_DESC" property="proDesc" jdbcType="VARCHAR"/>
+        <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR"/>
+        <result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR"/>
+        <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR"/>
+        <result column="TRADE_STATES" property="tradeStates" jdbcType="VARCHAR"/>
+        <result column="OUT_REFUND_NO" property="outRefundNo" jdbcType="VARCHAR"/>
+        <result column="APP_KEY" property="appKey" jdbcType="VARCHAR"/>
+        <result column="INST_TRADE_NO" property="instTradeNo" jdbcType="VARCHAR"/>
+        <result column="APP_ID" property="appId" jdbcType="VARCHAR"/>
+        <result column="MCH_ID" property="mchId" jdbcType="VARCHAR"/>
+        <result column="AMOUNT" property="amount" jdbcType="VARCHAR"/>
+        <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR"/>
+        <result column="CHANNEL_URL" property="channelUrl" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    ID, PRO_SUBJECT, PRO_DESC, NOTIFY_URL, TRADE_TYPE, TRADE_NO, TRADE_STATES, OUT_REFUND_NO, 
+    APP_KEY, INST_TRADE_NO, APP_ID, MCH_ID, AMOUNT, CHANNEL_CODE, CHANNEL_URL, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from center_trade_flow
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectByUniqueKey" resultMap="BaseResultMap" parameterType="com.pein.repository.entity.TraderFlow">
+        select
+        <include refid="Base_Column_List"/>
+        from center_trade_flow
+        where
+        APP_KEY = #{appKey,jdbcType=VARCHAR}
+        and
+        INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR}
+        and
+        CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByAppKeyAndOutNo" resultMap="BaseResultMap" parameterType="com.pein.repository.entity.TraderFlow">
+        select
+        <include refid="Base_Column_List"/>
+        from center_trade_flow
+        where
+        APP_KEY = #{appKey,jdbcType=VARCHAR}
+        and
+        INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from center_trade_flow
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.pein.repository.entity.TraderFlow">
+    insert into center_trade_flow (ID, PRO_SUBJECT, PRO_DESC, 
+      NOTIFY_URL, TRADE_TYPE, TRADE_NO, 
+      TRADE_STATES, OUT_REFUND_NO, APP_KEY, 
+      INST_TRADE_NO, APP_ID, MCH_ID, 
+      AMOUNT, CHANNEL_CODE, CHANNEL_URL, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{proSubject,jdbcType=VARCHAR}, #{proDesc,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, 
+      #{tradeStates,jdbcType=VARCHAR}, #{outRefundNo,jdbcType=VARCHAR}, #{appKey,jdbcType=VARCHAR}, 
+      #{instTradeNo,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{mchId,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, #{channelUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pein.repository.entity.TraderFlow">
+        insert into center_trade_flow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="proSubject != null">
+                PRO_SUBJECT,
+            </if>
+            <if test="proDesc != null">
+                PRO_DESC,
+            </if>
+            <if test="notifyUrl != null">
+                NOTIFY_URL,
+            </if>
+            <if test="tradeType != null">
+                TRADE_TYPE,
+            </if>
+            <if test="tradeNo != null">
+                TRADE_NO,
+            </if>
+            <if test="tradeStates != null">
+                TRADE_STATES,
+            </if>
+            <if test="outRefundNo != null">
+                OUT_REFUND_NO,
+            </if>
+            <if test="appKey != null">
+                APP_KEY,
+            </if>
+            <if test="instTradeNo != null">
+                INST_TRADE_NO,
+            </if>
+            <if test="appId != null">
+                APP_ID,
+            </if>
+            <if test="mchId != null">
+                MCH_ID,
+            </if>
+            <if test="amount != null">
+                AMOUNT,
+            </if>
+            <if test="channelCode != null">
+                CHANNEL_CODE,
+            </if>
+            <if test="channelUrl != null">
+                CHANNEL_URL,
+            </if>
+            CREATE_TIME,
+            UPDATE_TIME,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="proSubject != null">
+                #{proSubject,jdbcType=VARCHAR},
+            </if>
+            <if test="proDesc != null">
+                #{proDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="notifyUrl != null">
+                #{notifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeType != null">
+                #{tradeType,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeStates != null">
+                #{tradeStates,jdbcType=VARCHAR},
+            </if>
+            <if test="outRefundNo != null">
+                #{outRefundNo,jdbcType=VARCHAR},
+            </if>
+            <if test="appKey != null">
+                #{appKey,jdbcType=VARCHAR},
+            </if>
+            <if test="instTradeNo != null">
+                #{instTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null">
+                #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="mchId != null">
+                #{mchId,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="channelCode != null">
+                #{channelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="channelUrl != null">
+                #{channelUrl,jdbcType=VARCHAR},
+            </if>
+            now(),
+            now(),
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pein.repository.entity.TraderFlow">
+        update center_trade_flow
+        <set>
+            <if test="proSubject != null">
+                PRO_SUBJECT = #{proSubject,jdbcType=VARCHAR},
+            </if>
+            <if test="proDesc != null">
+                PRO_DESC = #{proDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="notifyUrl != null">
+                NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeType != null">
+                TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeStates != null">
+                TRADE_STATES = #{tradeStates,jdbcType=VARCHAR},
+            </if>
+            <if test="outRefundNo != null">
+                OUT_REFUND_NO = #{outRefundNo,jdbcType=VARCHAR},
+            </if>
+            <if test="appKey != null">
+                APP_KEY = #{appKey,jdbcType=VARCHAR},
+            </if>
+            <if test="instTradeNo != null">
+                INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null">
+                APP_ID = #{appId,jdbcType=VARCHAR},
+            </if>
+            <if test="mchId != null">
+                MCH_ID = #{mchId,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                AMOUNT = #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="channelCode != null">
+                CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="channelUrl != null">
+                CHANNEL_URL = #{channelUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pein.repository.entity.TraderFlow">
+    update center_trade_flow
+    set PRO_SUBJECT = #{proSubject,jdbcType=VARCHAR},
+      PRO_DESC = #{proDesc,jdbcType=VARCHAR},
+      NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      TRADE_STATES = #{tradeStates,jdbcType=VARCHAR},
+      OUT_REFUND_NO = #{outRefundNo,jdbcType=VARCHAR},
+      APP_KEY = #{appKey,jdbcType=VARCHAR},
+      INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      MCH_ID = #{mchId,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=VARCHAR},
+      CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR},
+      CHANNEL_URL = #{channelUrl,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

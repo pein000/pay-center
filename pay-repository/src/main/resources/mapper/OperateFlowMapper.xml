@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pein.repository.persistence.OperateFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.pein.repository.entity.OperateFlow" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPERATE_STATUS" property="operateStatus" jdbcType="VARCHAR" />
+    <result column="OPERATE_STYLE" property="operateStyle" jdbcType="VARCHAR" />
+    <result column="TRADE_ID" property="tradeId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OPERATE_STATUS, OPERATE_STYLE, TRADE_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from center_operate_flow
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from center_operate_flow
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pein.repository.entity.OperateFlow" >
+    insert into center_operate_flow (ID, OPERATE_STATUS, OPERATE_STYLE,
+      TRADE_ID, CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{operateStatus,jdbcType=VARCHAR}, #{operateStyle,jdbcType=VARCHAR}, 
+      #{tradeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pein.repository.entity.OperateFlow" >
+    insert into center_operate_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="operateStatus != null" >
+        OPERATE_STATUS,
+      </if>
+      <if test="operateStyle != null" >
+        OPERATE_STYLE,
+      </if>
+      <if test="tradeId != null" >
+        TRADE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="operateStatus != null" >
+        #{operateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operateStyle != null" >
+        #{operateStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pein.repository.entity.OperateFlow" >
+    update center_operate_flow
+    <set >
+      <if test="operateStatus != null" >
+        OPERATE_STATUS = #{operateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operateStyle != null" >
+        OPERATE_STYLE = #{operateStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeId != null" >
+        TRADE_ID = #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pein.repository.entity.OperateFlow" >
+    update center_operate_flow
+    set OPERATE_STATUS = #{operateStatus,jdbcType=VARCHAR},
+      OPERATE_STYLE = #{operateStyle,jdbcType=VARCHAR},
+      TRADE_ID = #{tradeId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
