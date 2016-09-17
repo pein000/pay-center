@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by qiuwei on 2016/9/1.
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.pein"})
 @MapperScan(basePackages = {"com.pein.repository"})
+@EnableTransactionManagement()
 public class ApplicationContext extends SpringBootServletInitializer  {
 
     public static void main(String[] args) {

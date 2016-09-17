@@ -66,4 +66,8 @@ public interface TraderFlowMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TraderFlow record);
+
+    int updateByAppKeyAndOutNo(TraderFlow record);
+
+    int updateByAppKeyAndOutNoAndCode(TraderFlow record);
 }

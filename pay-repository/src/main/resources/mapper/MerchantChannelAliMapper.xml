@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pein.repository.persistence.MerchantChannelAliMapper">
+
+  <resultMap id="BaseResultMap" type="com.pein.repository.entity.MerchantChannelAli">
+    <result column="P_ID" jdbcType="VARCHAR" property="pId" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="MD5" jdbcType="VARCHAR" property="md5" />
+    <result column="RSA_PUB" jdbcType="VARCHAR" property="rsaPub" />
+    <result column="RSA_PRI" jdbcType="VARCHAR" property="rsaPri" />
+    <result column="APP_KEY" jdbcType="VARCHAR" property="appKey" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+     P_ID, CODE, MD5, RSA_PUB, RSA_PRI, APP_KEY
+  </sql>
+
+  <select id="select" parameterType="com.pein.repository.entity.MerchantChannelAli" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM center_channel_ali channel
+    JOIN center_merchant_info merchant
+    ON channel.MERCHANT_ID = merchant.ID
+    AND channel.STATUS = '1'
+    AND merchant.STATUS = '1'
+    where merchant.APP_KEY = #{appKey,jdbcType=VARCHAR}
+    AND channel.CODE = #{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

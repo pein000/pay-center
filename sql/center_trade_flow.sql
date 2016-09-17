@@ -12,7 +12,7 @@ File Encoding         : 65001
 
 Date: 2016-09-02 19:39:01
 */
-
+use pay_center;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------

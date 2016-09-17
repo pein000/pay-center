@@ -1,15 +1,21 @@
 /**
  * Copyright 2015 netfinworks.com, Inc. All rights reserved.
  */
-package com.pein.alibaba.utils2;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+package com.pein.alibaba.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import com.pein.alibaba.config.AlipayConfig;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -18,7 +24,7 @@ import java.util.*;
  * @version $Id: AlipayCoreUtil.java, v 0.1 2015-2-6 下午2:43:03 zhangliang Exp $
  */
 public class AlipayCoreUtil {
-    public static String buildForm(Map<String, Object> sParaTemp, Logger logger,
+    public static String buildForm(Map<String, String> sParaTemp, Logger logger,
                                    Properties properties) {
         // 待请求参数
         String sPara = buildRequestPara(sParaTemp, logger, properties);
@@ -30,12 +36,12 @@ public class AlipayCoreUtil {
      * @param sParaTemp 请求前的参数数组
      * @return 要请求的参数数组
      */
-    public static String buildRequestPara(Map<String, Object> sParaTemp, Logger logger,
+    public static String buildRequestPara(Map<String, String> sParaTemp, Logger logger,
                                           Properties properties) {
         String result = "";
         String inputCharSet = properties.getProperty("INPUT_CHARSET");
         //除去数组中的空值和签名参数
-        Map<String, Object> sPara = AlipayCore.paraFilter(sParaTemp);
+        Map<String, String> sPara = AlipayCore.paraFilter(sParaTemp);
         //把数组所有元素排序，并按照“参数=参数值”的模式用“&”字符拼接成字符串
         String prestr = AlipayCore.createLinkString(sPara);
         //生成签名结果
@@ -59,13 +65,13 @@ public class AlipayCoreUtil {
     public static String buildMysign(String prestr, Properties properties, String encode) {
         //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
         System.out.println("ALIPAYFundChannelKey.MD5_key=="
-                           + properties.getProperty("MD5_key"));
+                + properties.getProperty("MD5_key"));
 
         //解码异步回调uri
         String realUri = decodeUri(prestr, encode);
 
-        String mysign = AlipayMd5Encrypt.sign(realUri,
-            properties.getProperty("MD5_key"), encode);
+        String mysign = com.pein.alibaba.utils.AlipayMd5Encrypt.sign(realUri,
+                properties.getProperty("MD5_key"), encode);
         return mysign;
     }
 
@@ -102,17 +108,17 @@ public class AlipayCoreUtil {
         }
         return decodedUri;
     }
-    
+
     /**
      * 组装数据
-     * 
+     *
      * @param properties
      * @param encoding
      *            是否包含sign
      * @return
      */
-    public static String getMapToString(Map<String, Object> properties,
-            String encoding) {
+    public static String getMapToString(Map<String, String> properties,
+                                        String encoding) {
         StringBuffer content = new StringBuffer();
         List<String> keys = new ArrayList<String>(properties.keySet());
         // 按自然顺序升序排序
@@ -133,11 +139,11 @@ public class AlipayCoreUtil {
 
         return content.toString();
     }
-    
+
     public static void encodeMap(Map map,String enc){
-         if(null!=map){
-             Set<String> keySet=map.keySet();
-             for (String  key : keySet) {
+        if(null!=map){
+            Set<String> keySet=map.keySet();
+            for (String  key : keySet) {
                 if(key.equals("sign")||key.equals("sign_type")){
                     continue;
                 }else{
@@ -146,9 +152,9 @@ public class AlipayCoreUtil {
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                    
+
                 }
             }
-         }
-     }
+        }
+    }
 }

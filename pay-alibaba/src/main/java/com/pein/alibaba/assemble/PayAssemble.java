@@ -1,7 +1,8 @@
 package com.pein.alibaba.assemble;
 
 import com.pein.alibaba.config.DirectConstants;
-import com.pein.common.request.DirectPayRequest;
+import com.pein.alibaba.key.DirectPayRequestKey;
+import com.pein.common.request.alibaba.DirectPayRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -21,18 +22,20 @@ public class PayAssemble {
      */
     public Map<String, String> assemble(DirectPayRequest directPayRequest) {
         Map<String, String> sParaTemp = new HashMap<String, String>();
-        sParaTemp.put("service", DirectConstants.DIRECT_PAY_SERVICE);
-        sParaTemp.put("partner", directPayRequest.getSeller_id());
-        sParaTemp.put("seller_id", directPayRequest.getSeller_id());
-        sParaTemp.put("_input_charset", DirectConstants.CHASET_UTF8);
-        sParaTemp.put("payment_type", directPayRequest.getPayment_type());
-        sParaTemp.put("notify_url", directPayRequest.getNotify_url());
-        sParaTemp.put("return_url", directPayRequest.getReturn_url());
-        sParaTemp.put("out_trade_no", directPayRequest.getOut_trade_no());
-        sParaTemp.put("subject", directPayRequest.getSubject());
-        sParaTemp.put("total_fee", directPayRequest.getTotal_fee());
-        sParaTemp.put("body", directPayRequest.getBody());
-        sParaTemp.put("qr_pay_mode", DirectConstants.DIRECT_PAY_MODE_2);
+        sParaTemp.put(DirectPayRequestKey.SERVICE, DirectConstants.DIRECT_PAY_SERVICE);
+        sParaTemp.put(DirectPayRequestKey.PARTNER, directPayRequest.getPartner());
+        sParaTemp.put(DirectPayRequestKey.SELLER_ID, directPayRequest.getSeller_id());
+        sParaTemp.put(DirectPayRequestKey.INPUT_CHARSET, DirectConstants.CHASET_UTF8);
+        sParaTemp.put(DirectPayRequestKey.PAYMENT_TYPE, DirectConstants.PAYMENT_TYPE);
+        sParaTemp.put(DirectPayRequestKey.NOTIFY_URL, directPayRequest.getNotify_url());
+        sParaTemp.put(DirectPayRequestKey.RETURN_URL, directPayRequest.getReturn_url());
+        sParaTemp.put(DirectPayRequestKey.OUT_TRADE_NO, directPayRequest.getOut_trade_no());
+        sParaTemp.put(DirectPayRequestKey.SUBJECT, directPayRequest.getSubject());
+        sParaTemp.put(DirectPayRequestKey.TOTAL_FEE, directPayRequest.getTotal_fee());
+        sParaTemp.put(DirectPayRequestKey.BODY, directPayRequest.getBody());
+        sParaTemp.put(DirectPayRequestKey.QR_PAY_MODE, DirectConstants.DIRECT_PAY_MODE_2);
+        sParaTemp.put(DirectPayRequestKey.SIGN,directPayRequest.getSign());
+        sParaTemp.put(DirectPayRequestKey.SIGN_TYPE, directPayRequest.getSign_type());
         return sParaTemp;
     }
 }

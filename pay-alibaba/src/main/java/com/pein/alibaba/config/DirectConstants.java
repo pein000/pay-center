@@ -20,8 +20,7 @@ public class DirectConstants {
     public final static String DIRECT_PAY_MODE_4 = "4";
     /*utf8编码*/
     public final static String CHASET_UTF8 = "utf-8";
-
-
-
+    /*支付类型*/
+    public final static String PAYMENT_TYPE = "1";
 
 }

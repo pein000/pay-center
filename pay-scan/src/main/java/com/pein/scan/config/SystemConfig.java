@@ -27,17 +27,9 @@ public class SystemConfig {
     @Value("${scan.pay}")
     private String scanPay;
 
-    /*支付宝回调地址*/
-    @Value("${url.notify.alibaba}")
-    private String urlNotifyAlibaba;
-
-    /*微信回调地址*/
-    @Value("${url.notify.wechat}")
-    private String urlNotifyWechat;
-
-    /*银联回调地址*/
-    @Value("${url.notify.union}")
-    private String urlNotifyUnion;
+    /*渠道回调地址*/
+    @Value("${url.notify}")
+    private String urlNotify;
 
     public String getUrlAlibaba() {
         return urlAlibaba;
@@ -55,15 +47,7 @@ public class SystemConfig {
         return scanPay;
     }
 
-    public String getUrlNotifyAlibaba() {
-        return urlNotifyAlibaba;
-    }
-
-    public String getUrlNotifyWechat() {
-        return urlNotifyWechat;
-    }
-
-    public String getUrlNotifyUnion() {
-        return urlNotifyUnion;
+    public String getUrlNotify() {
+        return urlNotify;
     }
 }

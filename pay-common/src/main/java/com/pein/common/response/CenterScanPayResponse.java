@@ -1,5 +1,8 @@
 package com.pein.common.response;
 
+import com.pein.common.enums.CenterResponseCode;
+import com.pein.common.enums.ExceptionCode;
+
 import java.io.Serializable;
 
 /**
@@ -11,9 +14,24 @@ public class CenterScanPayResponse implements Serializable{
 
     private String success;//调用渠道是否成功 success 、fail
 
-    private String error;//错误信息
+    private String errorCode;//错误码
+
+    private String errorMessage;//错误信息
 
     private String data;//通过渠道加密验证之后的扫码url
+
+    public CenterScanPayResponse() {
+    }
+
+    public CenterScanPayResponse(CenterResponseCode success) {
+        this.success = success.getCode();
+    }
+
+    public CenterScanPayResponse(CenterResponseCode fail,ExceptionCode exceptionCode) {
+        this.success = fail.getCode();
+        this.errorCode = exceptionCode.getCode();
+        this.errorMessage = exceptionCode.getMessage();
+    }
 
     public String getSuccess() {
         return success;
@@ -23,12 +41,20 @@ public class CenterScanPayResponse implements Serializable{
         this.success = success;
     }
 
-    public String getError() {
-        return error;
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public String getData() {
@@ -42,8 +68,9 @@ public class CenterScanPayResponse implements Serializable{
     @Override
     public String toString() {
         return "CenterScanPayResponse{" +
-                "success=" + success +
-                ", error='" + error + '\'' +
+                "success='" + success + '\'' +
+                ", errorCode='" + errorCode + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
                 ", data='" + data + '\'' +
                 '}';
     }

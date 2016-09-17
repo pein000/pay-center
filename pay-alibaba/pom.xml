@@ -83,9 +83,14 @@
             <systemPath>${project.basedir}/lib/jaxen-1.1-beta-6.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>apache-httpclient</groupId>
+            <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
         </dependency>
     </dependencies>
 

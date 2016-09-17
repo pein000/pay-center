@@ -4,6 +4,7 @@ package com.pein.alibaba.utils;
 import com.pein.alibaba.config.AlipayConfig;
 import com.pein.alibaba.config.DirectConstants;
 import com.pein.alibaba.sign.RSA;
+import com.pein.common.enums.SignType;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Node;
@@ -39,11 +40,11 @@ public class AlipaySubmit {
      * @param sPara 要签名的数组
      * @return 签名结果字符串
      */
-	public static String buildRequestMysign(Map<String, String> sPara) {
+	public static String buildRequestMysign(Map<String, String> sPara,Map<String, String> sParaTemp) {
     	String prestr = AlipayCore.createLinkString(sPara); //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
         String mysign = "";
-        if(AlipayConfig.sign_type.equals("RSA") ){
-        	mysign = RSA.sign(prestr, AlipayConfig.private_key, AlipayConfig.input_charset);
+        if(SignType.RSA.getType().equals(sParaTemp.get("sign_type"))){
+        	mysign = RSA.sign(prestr, sParaTemp.get("sign"), DirectConstants.CHASET_UTF8);
         }
         return mysign;
     }
@@ -57,11 +58,11 @@ public class AlipaySubmit {
         //除去数组中的空值和签名参数
         Map<String, String> sPara = AlipayCore.paraFilter(sParaTemp);
         //生成签名结果
-        String mysign = buildRequestMysign(sPara);
+        String mysign = buildRequestMysign(sPara,sParaTemp);
 
         //签名结果与签名方式加入请求提交参数组中
         sPara.put("sign", mysign);
-        sPara.put("sign_type", AlipayConfig.sign_type);
+        sPara.put("sign_type", sParaTemp.get("sign_type"));
 
         return sPara;
     }

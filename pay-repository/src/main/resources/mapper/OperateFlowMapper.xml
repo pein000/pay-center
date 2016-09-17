@@ -25,7 +25,7 @@
     insert into center_operate_flow (ID, OPERATE_STATUS, OPERATE_STYLE,
       TRADE_ID, CREATE_TIME)
     values (#{id,jdbcType=VARCHAR}, #{operateStatus,jdbcType=VARCHAR}, #{operateStyle,jdbcType=VARCHAR}, 
-      #{tradeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+      #{tradeId,jdbcType=VARCHAR}, now())
   </insert>
   <insert id="insertSelective" parameterType="com.pein.repository.entity.OperateFlow" >
     insert into center_operate_flow
@@ -42,9 +42,7 @@
       <if test="tradeId != null" >
         TRADE_ID,
       </if>
-      <if test="createTime != null" >
         CREATE_TIME,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -59,9 +57,7 @@
       <if test="tradeId != null" >
         #{tradeId,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
+        now(),
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.pein.repository.entity.OperateFlow" >

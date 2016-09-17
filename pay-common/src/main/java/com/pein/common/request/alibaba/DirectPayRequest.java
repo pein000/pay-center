@@ -1,4 +1,4 @@
-package com.pein.common.request;
+package com.pein.common.request.alibaba;
 
 import java.io.Serializable;
 
@@ -28,6 +28,8 @@ public class DirectPayRequest implements Serializable{
     private String seller_id; // 卖方id
     private String qr_pay_mode; // 扫码支付
 	private String appKey;//商户在平台的编号
+	private String sign;
+	private String sign_type;
     
 	public String getPayment_type() {
 		return payment_type;
@@ -163,6 +165,22 @@ public class DirectPayRequest implements Serializable{
 
 	public void setAppKey(String appKey) {
 		this.appKey = appKey;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public String getSign_type() {
+		return sign_type;
+	}
+
+	public void setSign_type(String sign_type) {
+		this.sign_type = sign_type;
 	}
 
 	@Override

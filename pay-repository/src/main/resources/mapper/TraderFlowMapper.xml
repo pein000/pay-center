@@ -35,7 +35,7 @@
         from center_trade_flow
         where ID = #{id,jdbcType=VARCHAR}
     </select>
-    
+
     <select id="selectByUniqueKey" resultMap="BaseResultMap" parameterType="com.pein.repository.entity.TraderFlow">
         select
         <include refid="Base_Column_List"/>
@@ -250,5 +250,30 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
-  </update>
+    </update>
+    <update id="updateByAppKeyAndOutNo" parameterType="com.pein.repository.entity.TraderFlow">
+        update
+          center_trade_flow
+        set
+          TRADE_STATES = #{tradeStates,jdbcType=VARCHAR},
+          UPDATE_TIME = now()
+        where
+          APP_KEY = #{appKey,jdbcType=VARCHAR}
+        and
+          INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByAppKeyAndOutNoAndCode" parameterType="com.pein.repository.entity.TraderFlow">
+        update
+          center_trade_flow
+        set
+          TRADE_STATES = #{tradeStates,jdbcType=VARCHAR},
+          UPDATE_TIME = now()
+        where
+          APP_KEY = #{appKey,jdbcType=VARCHAR}
+        and
+          INST_TRADE_NO = #{instTradeNo,jdbcType=VARCHAR}
+        and
+          CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+    </update>
 </mapper>

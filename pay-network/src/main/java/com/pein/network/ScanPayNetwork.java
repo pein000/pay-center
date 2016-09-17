@@ -1,6 +1,6 @@
 package com.pein.network;
 
-import com.pein.common.request.DirectPayRequest;
+import com.pein.common.request.alibaba.DirectPayRequest;
 import com.pein.common.response.PayResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,20 @@ public class ScanPayNetwork {
         LOGGER.info("LOG01030: begin to rest alibaba channel. url={},directPayRequest={}.", url, directPayRequest);
         PayResponse payResponse = restTemplate.postForObject(url, directPayRequest, PayResponse.class);
         LOGGER.info("LOG01050: success to rest alibaba channel. payResponse : {}", payResponse);
+        return payResponse;
+    }
+
+    public PayResponse wechatPay(String url, DirectPayRequest directPayRequest) {
+        LOGGER.info("LOG01030: begin to rest wechat channel. url={},directPayRequest={}.", url, directPayRequest);
+        PayResponse payResponse = restTemplate.postForObject(url, directPayRequest, PayResponse.class);
+        LOGGER.info("LOG01050: success to rest wechat channel. payResponse : {}", payResponse);
+        return payResponse;
+    }
+
+    public PayResponse unionPay(String url, DirectPayRequest directPayRequest) {
+        LOGGER.info("LOG01030: begin to rest union channel. url={},directPayRequest={}.", url, directPayRequest);
+        PayResponse payResponse = restTemplate.postForObject(url, directPayRequest, PayResponse.class);
+        LOGGER.info("LOG01050: success to rest union channel. payResponse : {}", payResponse);
         return payResponse;
     }
 }

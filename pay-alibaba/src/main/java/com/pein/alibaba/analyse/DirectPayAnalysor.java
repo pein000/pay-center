@@ -1,7 +1,7 @@
 package com.pein.alibaba.analyse;
 
 import com.pein.common.enums.ChannelCode;
-import com.pein.common.request.DirectPayRequest;
+import com.pein.common.request.alibaba.DirectPayRequest;
 import com.pein.common.response.PayResponse;
 
 /**

@@ -5,11 +5,12 @@ import com.pein.alibaba.assemble.PayAssemble;
 import com.pein.alibaba.utils.AlipayNotify;
 import com.pein.alibaba.utils.AlipaySubmit;
 import com.pein.common.enums.PayResponseStatus;
-import com.pein.common.request.DirectPayRequest;
+import com.pein.common.request.alibaba.DirectPayRequest;
 import com.pein.common.response.PayResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +28,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping
-public class DirectPayController {
+public class DirectPayFromController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
@@ -38,8 +39,9 @@ public class DirectPayController {
     private RestTemplate restTemplate;
 
     @RequestMapping("direct_pay")
-    public PayResponse pay(DirectPayRequest directPayRequest) {
+    public PayResponse pay(@RequestBody DirectPayRequest directPayRequest) {
         LOGGER.info("directPayRequest : {}", directPayRequest);
+
         //建立请求
         String response = AlipaySubmit.buildRequest(payAssembor.assemble(directPayRequest),"get","确认");
         LOGGER.info("directPay response : {}.",response);

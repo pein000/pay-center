@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
  */
 public enum ChannelCode {
     ALI_PAY("0","ALI_PAY"), //支付宝
-    WECHAT_PAY("1","WECHAT_PAY"),//微信
-    UNION_PAY("2","UNION_PAY");//银联
+    ALI_APP_PAY("1","ALI_PAY"), //支付宝APP支付
+    WECHAT_PAY("2","WECHAT_PAY"),//微信
+    WECHAT_APP_PAY("3","WECHAT_PAY"),//微信APP支付
+    UNION_PAY("4","UNION_PAY");//银联
 
     private String code;
 
@@ -28,11 +30,11 @@ public enum ChannelCode {
         return value;
     }
 
-    public static String matchValue(final String code) {
+    public static String matchCode(final String code) {
        return Arrays.asList(ChannelCode.values())
                .stream()
                .filter((filter) -> filter.getCode().equals(code))
-               .map((map) -> map.getValue())
+               .map((map) -> map.getCode())
                .collect(Collectors.toList())
                .get(0);
     }

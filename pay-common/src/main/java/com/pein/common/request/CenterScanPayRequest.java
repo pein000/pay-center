@@ -1,11 +1,13 @@
 package com.pein.common.request;
 
+import com.pein.common.request.alibaba.AlibabaBaseRequest;
+
 import java.io.Serializable;
 
 /**
  * Created by qiuwei on 2016/9/1.
  */
-public class CenterScanPayRequest implements Serializable{
+public class CenterScanPayRequest extends AlibabaBaseRequest implements Serializable{
 
     private static final long serialVersionUID = -1312804679803906802L;
 

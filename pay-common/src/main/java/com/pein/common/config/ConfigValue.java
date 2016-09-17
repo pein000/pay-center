@@ -16,14 +16,10 @@ public class ConfigValue {
     /*扫码支付调用地址*/
     private String scanPay;
 
-    /*支付宝回调地址*/
-    private String urlNotifyAlibaba;
+    /*渠道回调地址*/
+    private String urlNotify;
 
-    /*微信回调地址*/
-    private String urlNotifyWechat;
 
-    /*银联回调地址*/
-    private String urlNotifyUnion;
 
     public String getUrlAlibaba() {
         return urlAlibaba;
@@ -57,28 +53,12 @@ public class ConfigValue {
         this.scanPay = scanPay;
     }
 
-    public String getUrlNotifyAlibaba() {
-        return urlNotifyAlibaba;
+    public String getUrlNotify() {
+        return urlNotify;
     }
 
-    public void setUrlNotifyAlibaba(String urlNotifyAlibaba) {
-        this.urlNotifyAlibaba = urlNotifyAlibaba;
-    }
-
-    public String getUrlNotifyWechat() {
-        return urlNotifyWechat;
-    }
-
-    public void setUrlNotifyWechat(String urlNotifyWechat) {
-        this.urlNotifyWechat = urlNotifyWechat;
-    }
-
-    public String getUrlNotifyUnion() {
-        return urlNotifyUnion;
-    }
-
-    public void setUrlNotifyUnion(String urlNotifyUnion) {
-        this.urlNotifyUnion = urlNotifyUnion;
+    public void setUrlNotify(String urlNotify) {
+        this.urlNotify = urlNotify;
     }
 
     @Override
@@ -88,9 +68,7 @@ public class ConfigValue {
                 ", urlWechat='" + urlWechat + '\'' +
                 ", urlUnion='" + urlUnion + '\'' +
                 ", scanPay='" + scanPay + '\'' +
-                ", urlNotifyAlibaba='" + urlNotifyAlibaba + '\'' +
-                ", urlNotifyWechat='" + urlNotifyWechat + '\'' +
-                ", urlNotifyUnion='" + urlNotifyUnion + '\'' +
+                ", urlNotify='" + urlNotify + '\'' +
                 '}';
     }
 }
