@@ -39,6 +39,12 @@ public class WechatScanPayRequest implements Serializable{
     /* 交易类型 */
     private String trade_type;
 
+    private String certPath;
+
+    private String certPassword;
+
+    private String apiKey;
+
     public String getAppid() {
         return appid;
     }
@@ -117,6 +123,30 @@ public class WechatScanPayRequest implements Serializable{
 
     public void setTrade_type(String trade_type) {
         this.trade_type = trade_type;
+    }
+
+    public String getCertPath() {
+        return certPath;
+    }
+
+    public void setCertPath(String certPath) {
+        this.certPath = certPath;
+    }
+
+    public String getCertPassword() {
+        return certPassword;
+    }
+
+    public void setCertPassword(String certPassword) {
+        this.certPassword = certPassword;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
     @Override

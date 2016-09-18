@@ -31,6 +31,16 @@
         <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
         <springframework.version>4.2.4.RELEASE</springframework.version>
         <hikari.version>2.4.7</hikari.version>
+        <commons.httpclient>3.0.1</commons.httpclient>
+        <org.apache.httpclient>4.4.1</org.apache.httpclient>
+        <org.apache.httpclient.code>4.4.1</org.apache.httpclient.code>
+        <org.apache.httpclient.httpmime>4.3.6</org.apache.httpclient.httpmime>
+        <org.xstream>1.4.7</org.xstream>
+        <dom4j.version>1.6.1</dom4j.version>
+        <junit.version>4.12</junit.version>
+        <spring.test.version>4.2.4.RELEASE</spring.test.version>
+        <assertj.version>3.0.0</assertj.version>
+        <fixture.factory.version>3.1.0</fixture.factory.version>
     </properties>
 
     <dependencies>
@@ -126,6 +136,64 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${hikari.version}</version>
+        </dependency>
+        <!--http 组件 -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons.httpclient}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${org.apache.httpclient}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${org.apache.httpclient.httpmime}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${org.apache.httpclient.code}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${org.xstream}</version>
+        </dependency>
+        <!--xml-->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--断言工具assertj-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--测试fake工具 单元测试伪造数据工具-->
+        <dependency>
+            <groupId>br.com.six2six</groupId>
+            <artifactId>fixture-factory</artifactId>
+            <version>${fixture.factory.version}</version>
         </dependency>
     </dependencies>
     <build>
