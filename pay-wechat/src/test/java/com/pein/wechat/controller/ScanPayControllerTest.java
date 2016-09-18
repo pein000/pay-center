@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.OutputCapture;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
@@ -22,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
  * Created by qiuwei on 2016/9/18.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ActiveProfiles("unit")
+@ActiveProfiles("unit")
 @SpringApplicationConfiguration(classes = {ApplicationContext.class})
 @WebIntegrationTest(randomPort = true)
 public class ScanPayControllerTest extends AbstractTransactionalJUnit4SpringContextTests {
@@ -36,7 +37,7 @@ public class ScanPayControllerTest extends AbstractTransactionalJUnit4SpringCont
 
     private RestTemplate restTemplate;
 
-    private String url = "localhost:8084/pay-wechat/unified_pay";
+    private String url = "http://localhost:8084/pay-wechat/unified_pay";
 
     @Before
     public void setUp() {
